@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2156544D1BDC53700049A393 /* LatestNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2156544C1BDC53700049A393 /* LatestNews.swift */; };
+		2156544F1BDC53A00049A393 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2156544E1BDC53A00049A393 /* News.swift */; };
+		215654531BDC553E0049A393 /* LatestNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215654521BDC553E0049A393 /* LatestNewsViewController.swift */; };
+		215654551BDC6F2E0049A393 /* LatestNewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215654541BDC6F2E0049A393 /* LatestNewsTableViewCell.swift */; };
+		215654571BDC85E30049A393 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215654561BDC85E30049A393 /* NewsViewController.swift */; };
+		215654591BDC891F0049A393 /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215654581BDC891F0049A393 /* RequestHandler.swift */; };
 		2172CB8B1BDC47BB00AC1444 /* Alamofire.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 2172CB5A1BDC47BB00AC1444 /* Alamofire.podspec */; };
 		2172CB8C1BDC47BB00AC1444 /* Alamofire.xcworkspace in Resources */ = {isa = PBXBuildFile; fileRef = 2172CB5E1BDC47BB00AC1444 /* Alamofire.xcworkspace */; };
 		2172CB991BDC47BB00AC1444 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2172CB741BDC47BB00AC1444 /* Alamofire.swift */; };
@@ -107,6 +113,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2156544C1BDC53700049A393 /* LatestNews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatestNews.swift; sourceTree = "<group>"; };
+		2156544E1BDC53A00049A393 /* News.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
+		215654521BDC553E0049A393 /* LatestNewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatestNewsViewController.swift; sourceTree = "<group>"; };
+		215654541BDC6F2E0049A393 /* LatestNewsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatestNewsTableViewCell.swift; sourceTree = "<group>"; };
+		215654561BDC85E30049A393 /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		215654581BDC891F0049A393 /* RequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
 		2172CB591BDC47BB00AC1444 /* Alamofire.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Alamofire.playground; sourceTree = "<group>"; };
 		2172CB5A1BDC47BB00AC1444 /* Alamofire.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Alamofire.podspec; sourceTree = "<group>"; };
 		2172CB5B1BDC47BB00AC1444 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Alamofire.xcodeproj; sourceTree = "<group>"; };
@@ -148,6 +160,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		215654451BDC534E0049A393 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2156544C1BDC53700049A393 /* LatestNews.swift */,
+				2156544E1BDC53A00049A393 /* News.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		2156545A1BDC89270049A393 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				215654581BDC891F0049A393 /* RequestHandler.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		2172CB3B1BDC419000AC1444 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -233,10 +262,15 @@
 		21B1243D1BDBECAD005BCD0B /* XBA-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				2156545A1BDC89270049A393 /* Helpers */,
+				215654451BDC534E0049A393 /* Models */,
 				2172CB3B1BDC419000AC1444 /* Frameworks */,
 				21A02BE61BDC245D0044ABD4 /* Libs */,
 				21B124501BDBECB3005BCD0B /* Supporting Files */,
 				21B124421BDBECAD005BCD0B /* Main.storyboard */,
+				215654521BDC553E0049A393 /* LatestNewsViewController.swift */,
+				215654541BDC6F2E0049A393 /* LatestNewsTableViewCell.swift */,
+				215654561BDC85E30049A393 /* NewsViewController.swift */,
 			);
 			path = "XBA-iOS";
 			sourceTree = "<group>";
@@ -387,7 +421,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				21A02BE81BDC24A50044ABD4 /* SwiftyJSON.swift in Sources */,
+				215654551BDC6F2E0049A393 /* LatestNewsTableViewCell.swift in Sources */,
 				2172CBA61BDC47BB00AC1444 /* Upload.swift in Sources */,
+				2156544D1BDC53700049A393 /* LatestNews.swift in Sources */,
 				2172CB9B1BDC47BB00AC1444 /* Error.swift in Sources */,
 				2172CBA11BDC47BB00AC1444 /* Response.swift in Sources */,
 				2172CBA31BDC47BB00AC1444 /* Result.swift in Sources */,
@@ -397,9 +433,13 @@
 				2172CBA41BDC47BB00AC1444 /* ServerTrustPolicy.swift in Sources */,
 				2172CB9E1BDC47BB00AC1444 /* MultipartFormData.swift in Sources */,
 				2172CB9F1BDC47BB00AC1444 /* ParameterEncoding.swift in Sources */,
+				2156544F1BDC53A00049A393 /* News.swift in Sources */,
+				215654531BDC553E0049A393 /* LatestNewsViewController.swift in Sources */,
+				215654591BDC891F0049A393 /* RequestHandler.swift in Sources */,
 				2172CB991BDC47BB00AC1444 /* Alamofire.swift in Sources */,
 				2172CB9A1BDC47BB00AC1444 /* Download.swift in Sources */,
 				2172CB9D1BDC47BB00AC1444 /* Manager.swift in Sources */,
+				215654571BDC85E30049A393 /* NewsViewController.swift in Sources */,
 				2172CBA21BDC47BB00AC1444 /* ResponseSerialization.swift in Sources */,
 				2172CBA71BDC47BB00AC1444 /* Validation.swift in Sources */,
 			);
