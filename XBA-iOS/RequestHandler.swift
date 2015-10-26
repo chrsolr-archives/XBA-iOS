@@ -25,6 +25,8 @@ class RequestHandler {
                     news.title = post["title"].stringValue
                     news.avatar = post["authorAvatar"].stringValue
                     news.author = post["authorName"].stringValue
+                    news.firstName = post["authorFirstName"].stringValue
+                    news.lastName = post["authorLastName"].stringValue
                     news.datePublished = post["datePublished"].stringValue
                     news.images.append(post["images"][0].stringValue)
                     news.content = ""

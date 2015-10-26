@@ -12,10 +12,11 @@ class NewsViewController: UIViewController {
     
     @IBOutlet weak var newsImageView: UIImageView!
     @IBOutlet weak var avatarImageView: UIImageView!
-    @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var publishedLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
+    @IBOutlet weak var authorFirstNameLabel: UILabel!
+    @IBOutlet weak var authorLastNameLabel: UILabel!
     
     var requestHandler = RequestHandler()
     var newsPermalink: String!
@@ -37,6 +38,8 @@ class NewsViewController: UIViewController {
     }
     
     func renderDisplay(){
+        self.authorFirstNameLabel.text = self.news.firstName
+        self.authorLastNameLabel.text = self.news.lastName
 //        self.titleLabel.text = self.news.title
 //        self.authorLabel.text = self.news.author
 //        self.publishedLabel.text = self.news.datePublished

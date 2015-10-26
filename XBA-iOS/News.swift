@@ -11,6 +11,8 @@ import Foundation
 class News {
     var avatar: String!
     var author: String!
+    var firstName: String!
+    var lastName: String!
     var datePublished: String!
     var title: String!
     var images: [String]
