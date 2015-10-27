@@ -10,7 +10,6 @@ import UIKit
 
 class NewsViewController: UIViewController {
     
-    @IBOutlet weak var newsImageView: UIImageView!
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var publishedLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
@@ -40,11 +39,10 @@ class NewsViewController: UIViewController {
     func renderDisplay(){
         self.authorFirstNameLabel.text = self.news.firstName
         self.authorLastNameLabel.text = self.news.lastName
-//        self.titleLabel.text = self.news.title
-//        self.authorLabel.text = self.news.author
-//        self.publishedLabel.text = self.news.datePublished
-//        self.contentLabel.text = self.news.content
-//
+        self.titleLabel.text = self.news.title
+        self.publishedLabel.text = self.news.datePublished
+        self.contentLabel.text = self.news.content
+
         self.requestHandler.getImageFromUrl(self.news.avatar, completion: { (result) -> Void in
             self.avatarImageView.image = result
         })

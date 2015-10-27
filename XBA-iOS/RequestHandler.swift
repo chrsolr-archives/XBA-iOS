@@ -12,6 +12,33 @@ import Alamofire
 
 class RequestHandler {
     
+    func getLatestNews(pageNumber: Int, completion: (data: [LatestNews]) -> Void){
+        
+        var latestNews = [LatestNews]()
+        
+        Alamofire.request(.GET, "http://xba.herokuapp.com/api/latest/news?page=\(pageNumber)&key=1234567890")
+            .responseJSON { response in
+                
+                if let value: AnyObject = response.result.value {
+                    // handle the results as JSON, without a bunch of nested if loops
+                    let post = JSON(value)
+                    
+                    for item in post {
+                        let news = LatestNews()
+                        news.title = item.1["title"].stringValue
+                        news.subtitle = item.1["subtitle"].stringValue
+                        news.imageUrl = item.1["imageUrl"].stringValue
+                        news.author = item.1["author"].stringValue
+                        news.permalink = item.1["permalink"].stringValue
+                        
+                        latestNews.append(news)
+                    }
+                    
+                    completion(data: latestNews)
+                }
+        }
+    }
+    
     func getNews(permalink: String, completion: (data: News) -> Void){
         Alamofire.request(.GET, "http://xba.herokuapp.com/api/news/\(permalink)?key=1234567890")
             .responseJSON { response in
@@ -36,6 +63,34 @@ class RequestHandler {
                     }
                     
                     completion(data: news)
+                }
+        }
+    }
+    
+    func getLatestAchievements(pageNumber: Int, completion: (data: [LatestAchievements]) -> Void){
+        
+        var latestAchievements = [LatestAchievements]()
+        
+        Alamofire.request(.GET, "http://xba.herokuapp.com/api/latest/achievements?page=\(pageNumber)&key=1234567890")
+            .responseJSON { response in
+                
+                if let value: AnyObject = response.result.value {
+                    // handle the results as JSON, without a bunch of nested if loops
+                    let achievements = JSON(value)
+                    
+                    for item in achievements {
+                        let achievement = LatestAchievements()
+                        achievement.title = item.1["title"].stringValue
+                        achievement.submittedBy = item.1["submittedBy"].stringValue
+                        achievement.imageUrl = item.1["imageUrl"].stringValue
+                        achievement.achievementsAdded = item.1["achievementsAdded"].stringValue
+                        achievement.gamePermalink = item.1["gamePermalink"].stringValue
+                        achievement.gamerScoreAdded = item.1["gamerScoreAdded"].stringValue
+                        
+                        latestAchievements.append(achievement)
+                    }
+                    
+                    completion(data: latestAchievements)
                 }
         }
     }
