@@ -62,6 +62,17 @@ class RequestHandler {
                         news.content = news.content + "\n\n" + item.1.stringValue
                     }
                     
+                    var i = 1
+                    for item in post["comments"] {
+                        let comment = Comment()
+                        comment.author = "Comment #\(i) by \(item.1["author"].stringValue)"
+                        comment.createdDate = item.1["createdDate"].stringValue
+                        comment.content = item.1["content"].stringValue
+                        
+                        news.comments.append(comment)
+                        i++;
+                    }
+                    
                     completion(data: news)
                 }
         }

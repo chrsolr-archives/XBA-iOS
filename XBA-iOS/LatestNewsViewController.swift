@@ -25,6 +25,9 @@ class LatestNewsViewController: UITableViewController {
         self.tableview.rowHeight = UITableViewAutomaticDimension
         
         self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        
+        self.tableview.tableFooterView = UIView(frame: CGRectZero)
+        self.tableview.backgroundColor = UIColor.whiteColor()
     }
 
     override func viewDidAppear(animated: Bool) {

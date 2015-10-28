@@ -1,32 +1,43 @@
 //
-//  LatestAchievementsTableViewController.swift
+//  NewsCommentsTableViewController.swift
 //  XBA-iOS
 //
-//  Created by Christian Soler on 10/26/15.
+//  Created by Christian Soler on 10/27/15.
 //  Copyright © 2015 iamrelos. All rights reserved.
 //
 
 import UIKit
 
-class LatestAchievementsTableViewController: UITableViewController {
-    
+class NewsCommentsTableViewController: UITableViewController {
+
     @IBOutlet var tableview: UITableView!
     
-    var requestHandler = RequestHandler()
-    var latestAchievements = [LatestAchievements]()
+    var comments = [Comment]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.getLatestAchievements(1)
-        
-        self.tableview.estimatedRowHeight = 184.0
+        self.tableview.estimatedRowHeight = 118.0
         self.tableview.rowHeight = UITableViewAutomaticDimension
-        
-        self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
-        
         self.tableview.tableFooterView = UIView(frame: CGRectZero)
         self.tableview.backgroundColor = UIColor.whiteColor()
+    }
+
+    func refreshComments(){
+        self.tableview.reloadData()
+    }
+    
+    @IBAction func dismissView(sender: AnyObject) {
+         self.navigationController!.popViewControllerAnimated(true)
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        self.tableview.reloadData()
     }
 
     // MARK: - Table view data source
@@ -37,13 +48,13 @@ class LatestAchievementsTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return self.latestAchievements.count
+        // #warning Incomplete implementation, return the number of row
+        return comments.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("LatestAchievementsCellIdentifier", forIndexPath: indexPath) as! LatestAchievementsViewCell
-
+        let cell = tableView.dequeueReusableCellWithIdentifier("NewsCommentsCell", forIndexPath: indexPath) as! NewsCommentsTableViewCell
+        
         // Remove seperator inset
         if cell.respondsToSelector("setSeparatorInset:") {
             cell.separatorInset = UIEdgeInsetsZero
@@ -58,24 +69,10 @@ class LatestAchievementsTableViewController: UITableViewController {
         if cell.respondsToSelector("setLayoutMargins:") {
             cell.layoutMargins = UIEdgeInsetsZero
         }
-        
-        let achievement = latestAchievements[indexPath.row]
-        
-        cell.configureCellWith(achievement)
+
+        // Configure the cell...
+        cell.configureCellWith(comments[indexPath.row]);
 
         return cell
-    }
-    
-    func getLatestAchievements(pageNumber: Int){
-        requestHandler.getLatestAchievements(1, completion: {(result) -> Void in
-            self.latestAchievements = result
-            self.tableview.reloadData()
-            self.refreshControl?.endRefreshing()
-        })
-    }
-
-    func refresh(sender: AnyObject){
-        self.latestAchievements = [LatestAchievements]()
-        self.getLatestAchievements(1)
     }
 }

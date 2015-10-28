@@ -17,8 +17,10 @@ class News {
     var title: String!
     var images: [String]
     var content: String!
+    var comments: [Comment]
     
     init(){
         images = [String]()
+        comments = [Comment]()
     }
 }

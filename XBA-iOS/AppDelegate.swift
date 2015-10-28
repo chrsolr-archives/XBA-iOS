@@ -13,7 +13,8 @@ import Alamofire
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var selectedShortcut: String?
+    var shortcutItem: UIApplicationShortcutItem?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -23,7 +24,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBar.appearance().barTintColor = UIColor(red: 15.0/255.0, green: 125.0/255.0, blue: 13.0/255.0, alpha: 1.0)
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.lightTextColor()], forState:.Normal)
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.whiteColor()], forState:.Selected)
-        return true
+        
+        var performShortcutDelegate = true
+        
+        if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsShortcutItemKey] as? UIApplicationShortcutItem {
+            
+            self.shortcutItem = shortcutItem
+            
+            performShortcutDelegate = false
+        }
+        
+        return performShortcutDelegate
+
+    }
+    
+    func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: (Bool) -> Void) {
+        completionHandler(quickActionHandler(shortcutItem))
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -48,6 +64,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    func quickActionHandler(shortcutItem:UIApplicationShortcutItem) -> Bool {
+        var success = false
+        
+        guard let tabBarController = self.window?.rootViewController as? UITabBarController else {
+            return false
+        }
+        
+        switch (shortcutItem.type){
+        case "com.iamrelos.xba.quickaction.news":
+            self.shortcutItem = shortcutItem
+            tabBarController.selectedIndex = 0
+            success = true
+            break
+        case "com.iamrelos.xba.quickaction.achievements":
+            self.shortcutItem = shortcutItem
+            tabBarController.selectedIndex = 1
+            success = true
+            break
+        default:
+            self.shortcutItem = nil
+            success = false
+            break
+        }
+        
 
+        
+        // Get the view controller you want to load
+//        let mainSB = UIStoryboard(name: "Main", bundle: nil)
+//        let newsVC = mainSB.instantiateViewControllerWithIdentifier("NewsControllerSBID") as! LatestNewsViewController
+//        
+//        self.window?.rootViewController = newsVC
+//        self.window?.makeKeyAndVisible()
+        
+        return success
+    }
 }
 

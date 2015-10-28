@@ -24,9 +24,9 @@ class NewsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        self.avatarImageView.layer.borderWidth = 3
+        self.avatarImageView.layer.borderWidth = 3
         self.avatarImageView.layer.masksToBounds = false
-//        self.avatarImageView.layer.borderColor = UIColor.whiteColor().CGColor
+        self.avatarImageView.layer.borderColor = UIColor.whiteColor().CGColor
         self.avatarImageView.layer.cornerRadius = avatarImageView.frame.height/2
         self.avatarImageView.clipsToBounds = true
         
@@ -46,9 +46,18 @@ class NewsViewController: UIViewController {
         self.requestHandler.getImageFromUrl(self.news.avatar, completion: { (result) -> Void in
             self.avatarImageView.image = result
         })
-        
-//        self.requestHandler.getImageFromUrl(self.news.images[0], completion: { (result) -> Void in
-//            self.newsImageView.image = result
-//        })
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let identifier = segue.identifier {
+            
+            if identifier == "NewsCommentsIdentifier" {
+                let commentsVC = segue.destinationViewController as? NewsCommentsTableViewController
+                
+                if (news != nil){
+                    commentsVC!.comments = news.comments
+                }
+            }
+        }
     }
 }
