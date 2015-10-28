@@ -68,6 +68,7 @@ class LatestAchievementsTableViewController: UITableViewController {
     
     func getLatestAchievements(pageNumber: Int){
         requestHandler.getLatestAchievements(1, completion: {(result) -> Void in
+            self.latestAchievements = [LatestAchievements]()
             self.latestAchievements = result
             self.tableview.reloadData()
             self.refreshControl?.endRefreshing()
@@ -75,7 +76,6 @@ class LatestAchievementsTableViewController: UITableViewController {
     }
 
     func refresh(sender: AnyObject){
-        self.latestAchievements = [LatestAchievements]()
         self.getLatestAchievements(1)
     }
 }

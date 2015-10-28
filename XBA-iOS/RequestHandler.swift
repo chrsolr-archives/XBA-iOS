@@ -15,8 +15,9 @@ class RequestHandler {
     func getLatestNews(pageNumber: Int, completion: (data: [LatestNews]) -> Void){
         
         var latestNews = [LatestNews]()
+        let url = self.fixEncodingUrl("http://xba.herokuapp.com/api/latest/news?page=\(pageNumber)&key=1234567890")
         
-        Alamofire.request(.GET, "http://xba.herokuapp.com/api/latest/news?page=\(pageNumber)&key=1234567890")
+        Alamofire.request(.GET, url)
             .responseJSON { response in
                 
                 if let value: AnyObject = response.result.value {
@@ -40,13 +41,14 @@ class RequestHandler {
     }
     
     func getNews(permalink: String, completion: (data: News) -> Void){
-        Alamofire.request(.GET, "http://xba.herokuapp.com/api/news/\(permalink)?key=1234567890")
+        let url = self.fixEncodingUrl("http://xba.herokuapp.com/api/news/\(permalink)?key=1234567890")
+
+        Alamofire.request(.GET, url)
             .responseJSON { response in
-                
+
                 if let value: AnyObject = response.result.value {
                     // handle the results as JSON, without a bunch of nested if loops
                     let post = JSON(value)
-                    
                     
                     let news = News()
                     news.title = post["title"].stringValue
@@ -79,10 +81,10 @@ class RequestHandler {
     }
     
     func getLatestAchievements(pageNumber: Int, completion: (data: [LatestAchievements]) -> Void){
-        
+        let url = self.fixEncodingUrl("http://xba.herokuapp.com/api/latest/achievements?page=\(pageNumber)&key=1234567890")
         var latestAchievements = [LatestAchievements]()
         
-        Alamofire.request(.GET, "http://xba.herokuapp.com/api/latest/achievements?page=\(pageNumber)&key=1234567890")
+        Alamofire.request(.GET, url)
             .responseJSON { response in
                 
                 if let value: AnyObject = response.result.value {
@@ -106,9 +108,15 @@ class RequestHandler {
         }
     }
     
-    func getImageFromUrl(url: String, completion: (image: UIImage) -> Void){
+    func getImageFromUrl(var url: String, completion: (image: UIImage) -> Void){
+        url = self.fixEncodingUrl(url)
+        
         Alamofire.request(.GET, url).response { (request, response, data, error) in
             completion(image: UIImage(data: data!)!)
         }
+    }
+    
+    func fixEncodingUrl(url: String) -> String {
+        return url.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
     }
 }

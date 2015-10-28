@@ -88,6 +88,7 @@ class LatestNewsViewController: UITableViewController {
     
     func getLatestNews(pageNumber: Int){
         requestHandler.getLatestNews(pageNumber, completion: {(result) -> Void in
+            self.latestNews = [LatestNews]()
             self.latestNews = result;
             self.tableview.reloadData()
             self.refreshControl?.endRefreshing()
@@ -95,7 +96,6 @@ class LatestNewsViewController: UITableViewController {
     }
     
     func refresh(sender: AnyObject){
-        self.latestNews = [LatestNews]()
         self.getLatestNews(1)
     }
 }
