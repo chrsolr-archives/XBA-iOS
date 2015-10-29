@@ -99,17 +99,7 @@ class RequestHandler {
                         achievement.achievementsAdded = item.1["achievementsAdded"].stringValue
                         achievement.gamePermalink = item.1["gamePermalink"].stringValue
                         achievement.gamerScoreAdded = item.1["gamerScoreAdded"].stringValue
-                        
-                        var i = 1
-                        for item in item.1["comments"] {
-                            let comment = Comment()
-                            comment.author = "Comment #\(i) by \(item.1["author"].stringValue)"
-                            comment.createdDate = item.1["createdDate"].stringValue
-                            comment.content = item.1["content"].stringValue
-                            
-                            achievement.comments.append(comment)
-                            i++;
-                        }
+                        achievement.commentsPermalink = item.1["commentsPermalink"].stringValue
                         
                         latestAchievements.append(achievement)
                     }
@@ -124,6 +114,33 @@ class RequestHandler {
         
         Alamofire.request(.GET, url).response { (request, response, data, error) in
             completion(image: UIImage(data: data!)!)
+        }
+    }
+    
+    func getComments(permalink: String, completion: (comments: [Comment]) -> Void){
+        let url = self.fixEncodingUrl("http://xba.herokuapp.com/api/latest/achievements/comments\(permalink)?key=1234567890")
+        
+        print(url)
+        
+        Alamofire.request(.GET, url).responseJSON { response in
+            if let value: AnyObject = response.result.value {
+                let comments = JSON(value)
+                
+                var data = [Comment()]
+                
+                var i = 1
+                for item in comments {
+                    let comment = Comment()
+                    comment.author = "Comment #\(i) by \(item.1["author"].stringValue)"
+                    comment.content = item.1["content"].stringValue
+                    comment.createdDate = item.1["createdDate"].stringValue
+                    
+                    data.append(comment)
+                    i++
+                }
+                
+                completion(comments: data)
+            }
         }
     }
     

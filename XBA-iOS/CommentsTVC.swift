@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import Alamofire
 
 class CommentsTVC: UITableViewController {
 
     @IBOutlet var tableview: UITableView!
     
     var comments = [Comment]()
+    var permalink: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +23,10 @@ class CommentsTVC: UITableViewController {
         self.tableview.rowHeight = UITableViewAutomaticDimension
         self.tableview.tableFooterView = UIView(frame: CGRectZero)
         self.tableview.backgroundColor = UIColor.whiteColor()
+        
+        if (self.permalink != nil) {
+            self.getComments()
+        }
     }
 
     func refreshComments(){
@@ -74,5 +80,12 @@ class CommentsTVC: UITableViewController {
         cell.configureCellWith(comments[indexPath.row]);
 
         return cell
+    }
+    
+    func getComments(){
+        RequestHandler().getComments(self.permalink, completion: { (result) -> Void in
+            self.comments = result
+            self.tableview.reloadData()
+        })
     }
 }

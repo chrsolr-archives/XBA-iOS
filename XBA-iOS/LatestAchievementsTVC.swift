@@ -69,13 +69,13 @@ class LatestAchievementsTVC: UITableViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier {
-            
+
             if identifier == "CommentsIdentifier" {
                 let commentsVC = segue.destinationViewController as? CommentsTVC
                 
                 if let index = self.tableview.indexPathForCell(sender as! UITableViewCell) {
-
-                    commentsVC!.comments = latestAchievements[index.row].comments
+                    print(latestAchievements[index.row].commentsPermalink)
+                    commentsVC!.permalink = latestAchievements[index.row].commentsPermalink
                 }
             }
         }

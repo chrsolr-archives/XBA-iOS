@@ -15,9 +15,5 @@ class LatestAchievements {
     var gamerScoreAdded: String!
     var submittedBy: String!
     var gamePermalink: String!
-    var comments: [Comment]
-    
-    init(){
-        comments = [Comment]()
-    }
+    var commentsPermalink: String!
 }
