@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewsViewController: UIViewController {
+class NewsVC: UIViewController {
     
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var publishedLabel: UILabel!
@@ -51,8 +51,8 @@ class NewsViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier {
             
-            if identifier == "NewsCommentsIdentifier" {
-                let commentsVC = segue.destinationViewController as? NewsCommentsTableViewController
+            if identifier == "CommentsIdentifier" {
+                let commentsVC = segue.destinationViewController as? CommentsTVC
                 
                 if (news != nil){
                     commentsVC!.comments = news.comments

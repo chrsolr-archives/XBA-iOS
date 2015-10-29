@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewsCommentsTableViewController: UITableViewController {
+class CommentsTVC: UITableViewController {
 
     @IBOutlet var tableview: UITableView!
     
@@ -53,7 +53,7 @@ class NewsCommentsTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("NewsCommentsCell", forIndexPath: indexPath) as! NewsCommentsTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("CommentsCell", forIndexPath: indexPath) as! CommentsTVCCell
         
         // Remove seperator inset
         if cell.respondsToSelector("setSeparatorInset:") {

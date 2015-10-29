@@ -100,6 +100,17 @@ class RequestHandler {
                         achievement.gamePermalink = item.1["gamePermalink"].stringValue
                         achievement.gamerScoreAdded = item.1["gamerScoreAdded"].stringValue
                         
+                        var i = 1
+                        for item in item.1["comments"] {
+                            let comment = Comment()
+                            comment.author = "Comment #\(i) by \(item.1["author"].stringValue)"
+                            comment.createdDate = item.1["createdDate"].stringValue
+                            comment.content = item.1["content"].stringValue
+                            
+                            achievement.comments.append(comment)
+                            i++;
+                        }
+                        
                         latestAchievements.append(achievement)
                     }
                     

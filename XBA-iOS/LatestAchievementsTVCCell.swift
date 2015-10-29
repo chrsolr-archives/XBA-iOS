@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-class LatestAchievementsViewCell: UITableViewCell {
+class LatestAchievementsTVCCell: UITableViewCell {
     
     @IBOutlet weak var coverImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!

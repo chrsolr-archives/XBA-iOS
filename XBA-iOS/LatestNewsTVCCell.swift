@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-class LatestNewsTableViewCell: UITableViewCell {
+class LatestNewsTVCCell: UITableViewCell {
 
     @IBOutlet weak var coverImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
