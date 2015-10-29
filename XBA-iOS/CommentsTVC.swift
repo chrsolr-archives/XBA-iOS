@@ -15,6 +15,7 @@ class CommentsTVC: UITableViewController {
     
     var comments = [Comment]()
     var permalink: String!
+    var nID: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,9 +25,7 @@ class CommentsTVC: UITableViewController {
         self.tableview.tableFooterView = UIView(frame: CGRectZero)
         self.tableview.backgroundColor = UIColor.whiteColor()
         
-        if (self.permalink != nil) {
-            self.getComments()
-        }
+        self.getComments()
     }
 
     func refreshComments(){
@@ -83,7 +82,7 @@ class CommentsTVC: UITableViewController {
     }
     
     func getComments(){
-        RequestHandler().getComments(self.permalink, completion: { (result) -> Void in
+        RequestHandler().getComments(self.permalink, nID: self.nID, completion: { (result) -> Void in
             self.comments = result
             self.tableview.reloadData()
         })

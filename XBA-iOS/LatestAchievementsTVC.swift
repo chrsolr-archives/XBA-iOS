@@ -74,7 +74,6 @@ class LatestAchievementsTVC: UITableViewController {
                 let commentsVC = segue.destinationViewController as? CommentsTVC
                 
                 if let index = self.tableview.indexPathForCell(sender as! UITableViewCell) {
-                    print(latestAchievements[index.row].commentsPermalink)
                     commentsVC!.permalink = latestAchievements[index.row].commentsPermalink
                 }
             }

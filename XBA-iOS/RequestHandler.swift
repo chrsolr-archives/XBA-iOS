@@ -58,21 +58,11 @@ class RequestHandler {
                     news.lastName = post["authorLastName"].stringValue
                     news.datePublished = post["datePublished"].stringValue
                     news.images.append(post["images"][0].stringValue)
+                    news.nID = post["nID"].stringValue
                     news.content = ""
                     
                     for item in post["content"] {
                         news.content = news.content + "\n\n" + item.1.stringValue
-                    }
-                    
-                    var i = 1
-                    for item in post["comments"] {
-                        let comment = Comment()
-                        comment.author = "Comment #\(i) by \(item.1["author"].stringValue)"
-                        comment.createdDate = item.1["createdDate"].stringValue
-                        comment.content = item.1["content"].stringValue
-                        
-                        news.comments.append(comment)
-                        i++;
                     }
                     
                     completion(data: news)
@@ -117,34 +107,44 @@ class RequestHandler {
         }
     }
     
-    func getComments(permalink: String, completion: (comments: [Comment]) -> Void){
-        let url = self.fixEncodingUrl("http://xba.herokuapp.com/api/latest/achievements/comments\(permalink)?key=1234567890")
+    func getComments(permalink: String!, nID: String!, completion: (comments: [Comment]) -> Void){
+        var url: String
         
-        print(url)
+        if (nID == nil) {
+            url = self.fixEncodingUrl("http://xba.herokuapp.com/api/comments?permalink=\(permalink)&key=1234567890")
+        } else {
+            url = self.fixEncodingUrl("http://xba.herokuapp.com/api/comments?nID=\(nID)&key=1234567890")
+        }
         
         Alamofire.request(.GET, url).responseJSON { response in
             if let value: AnyObject = response.result.value {
-                let comments = JSON(value)
+                let json = JSON(value)
                 
-                var data = [Comment()]
-                
-                var i = 1
-                for item in comments {
-                    let comment = Comment()
-                    comment.author = "Comment #\(i) by \(item.1["author"].stringValue)"
-                    comment.content = item.1["content"].stringValue
-                    comment.createdDate = item.1["createdDate"].stringValue
-                    
-                    data.append(comment)
-                    i++
-                }
+                let data = self.parseCommentsJSON(json)
                 
                 completion(comments: data)
             }
         }
     }
     
-    func fixEncodingUrl(url: String) -> String {
+    private func fixEncodingUrl(url: String) -> String {
         return url.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+    }
+    
+    private func parseCommentsJSON(json: JSON) -> [Comment] {
+        var data = [Comment]()
+        
+        var i = 1
+        for item in json {
+            let comment = Comment()
+            comment.author = "Comment #\(i) by \(item.1["author"].stringValue)"
+            comment.content = item.1["content"].stringValue
+            comment.createdDate = item.1["createdDate"].stringValue
+            
+            data.append(comment)
+            i++
+        }
+        
+        return data
     }
 }

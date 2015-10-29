@@ -55,7 +55,7 @@ class NewsVC: UIViewController {
                 let commentsVC = segue.destinationViewController as? CommentsTVC
                 
                 if (news != nil){
-                    commentsVC!.comments = news.comments
+                    commentsVC!.nID = news.nID
                 }
             }
         }
