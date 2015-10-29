@@ -18,6 +18,7 @@ class News {
     var images: [String]
     var content: String!
     var comments: [Comment]
+    var nID: String!
     
     init(){
         images = [String]()

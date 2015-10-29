@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import Alamofire
 
-class NewsCommentsTableViewController: UITableViewController {
+class CommentsTVC: UITableViewController {
 
     @IBOutlet var tableview: UITableView!
     
     var comments = [Comment]()
+    var permalink: String!
+    var nID: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +24,8 @@ class NewsCommentsTableViewController: UITableViewController {
         self.tableview.rowHeight = UITableViewAutomaticDimension
         self.tableview.tableFooterView = UIView(frame: CGRectZero)
         self.tableview.backgroundColor = UIColor.whiteColor()
+        
+        self.getComments()
     }
 
     func refreshComments(){
@@ -53,7 +58,7 @@ class NewsCommentsTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("NewsCommentsCell", forIndexPath: indexPath) as! NewsCommentsTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("CommentsCell", forIndexPath: indexPath) as! CommentsTVCCell
         
         // Remove seperator inset
         if cell.respondsToSelector("setSeparatorInset:") {
@@ -74,5 +79,12 @@ class NewsCommentsTableViewController: UITableViewController {
         cell.configureCellWith(comments[indexPath.row]);
 
         return cell
+    }
+    
+    func getComments(){
+        RequestHandler().getComments(self.permalink, nID: self.nID, completion: { (result) -> Void in
+            self.comments = result
+            self.tableview.reloadData()
+        })
     }
 }

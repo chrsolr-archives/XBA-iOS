@@ -9,14 +9,14 @@
         <!--Latest News-->
         <scene sceneID="9bv-zS-Ldo">
             <objects>
-                <tableViewController id="eK9-m6-Oj5" customClass="LatestNewsViewController" customModule="XBA" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="eK9-m6-Oj5" customClass="LatestNewsTVC" customModule="XBA" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="235" sectionHeaderHeight="28" sectionFooterHeight="28" id="os1-wu-sFM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="LatestNewsCellIdentifier" rowHeight="235" id="0bB-Wl-xB1" customClass="LatestNewsTableViewCell" customModule="XBA" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="LatestNewsCellIdentifier" rowHeight="235" id="0bB-Wl-xB1" customClass="LatestNewsTVCCell" customModule="XBA" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="320" height="235"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0bB-Wl-xB1" id="E8V-vT-xe2">
@@ -115,7 +115,7 @@
         <!--News-->
         <scene sceneID="eG2-0Y-q4G">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="E5B-Sa-g53" customClass="NewsViewController" customModule="XBA" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="E5B-Sa-g53" customClass="NewsVC" customModule="XBA" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Qii-Si-pSM"/>
                         <viewControllerLayoutGuide type="bottom" id="4Aq-Cx-vU3"/>
@@ -236,7 +236,7 @@
                     <navigationItem key="navigationItem" title="News" id="JLs-aL-VeR">
                         <barButtonItem key="rightBarButtonItem" title="Comments" id="vTx-JU-zSb">
                             <connections>
-                                <segue destination="dKb-dc-9bV" kind="show" identifier="NewsCommentsIdentifier" id="fEO-5A-m2V"/>
+                                <segue destination="dKb-dc-9bV" kind="show" identifier="CommentsIdentifier" id="fEO-5A-m2V"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -256,14 +256,14 @@
         <!--Comments-->
         <scene sceneID="0T0-IB-VQr">
             <objects>
-                <tableViewController id="dKb-dc-9bV" customClass="NewsCommentsTableViewController" customModule="XBA" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="dKb-dc-9bV" customClass="CommentsTVC" customModule="XBA" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="118" sectionHeaderHeight="28" sectionFooterHeight="28" id="U4j-oP-hcp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NewsCommentsCell" rowHeight="118" id="2kE-IZ-6gM" customClass="NewsCommentsTableViewCell" customModule="XBA" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CommentsCell" rowHeight="118" id="2kE-IZ-6gM" customClass="CommentsTVCCell" customModule="XBA" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="320" height="118"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2kE-IZ-6gM" id="Snc-v2-9RS">
@@ -347,7 +347,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bzS-fc-xv8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2494" y="-933"/>
+            <point key="canvasLocation" x="2085" y="-253"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="34F-tq-A3P">
@@ -372,14 +372,14 @@
         <!--Latest Achievements-->
         <scene sceneID="XeZ-fJ-rRc">
             <objects>
-                <tableViewController id="eoN-xm-qOE" customClass="LatestAchievementsTableViewController" customModule="XBA" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="eoN-xm-qOE" customClass="LatestAchievementsTVC" customModule="XBA" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="184" sectionHeaderHeight="28" sectionFooterHeight="28" id="wZt-EX-Z7L">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="LatestAchievementsCellIdentifier" rowHeight="184" id="xv6-QB-tmb" customClass="LatestAchievementsViewCell" customModule="XBA" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="LatestAchievementsCellIdentifier" rowHeight="184" id="xv6-QB-tmb" customClass="LatestAchievementsTVCCell" customModule="XBA" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="320" height="184"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xv6-QB-tmb" id="fUb-jD-bxG">
@@ -465,6 +465,7 @@
                                     <outlet property="gamerScoreAdded" destination="tjB-MG-uO8" id="It1-AE-fQX"/>
                                     <outlet property="submittedByLabel" destination="q2n-nU-qNh" id="YDG-zU-Kes"/>
                                     <outlet property="titleLabel" destination="pKC-ul-CKf" id="SHr-wR-KUb"/>
+                                    <segue destination="dKb-dc-9bV" kind="show" identifier="CommentsIdentifier" id="4hs-1a-DQw"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -533,4 +534,7 @@
             <point key="canvasLocation" x="1228" y="-253"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="4hs-1a-DQw"/>
+    </inferredMetricsTieBreakers>
 </document>

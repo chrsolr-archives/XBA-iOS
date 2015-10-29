@@ -15,4 +15,5 @@ class LatestAchievements {
     var gamerScoreAdded: String!
     var submittedBy: String!
     var gamePermalink: String!
+    var commentsPermalink: String!
 }

@@ -15,8 +15,9 @@ class RequestHandler {
     func getLatestNews(pageNumber: Int, completion: (data: [LatestNews]) -> Void){
         
         var latestNews = [LatestNews]()
+        let url = self.fixEncodingUrl("http://xba.herokuapp.com/api/latest/news?page=\(pageNumber)&key=1234567890")
         
-        Alamofire.request(.GET, "http://xba.herokuapp.com/api/latest/news?page=\(pageNumber)&key=1234567890")
+        Alamofire.request(.GET, url)
             .responseJSON { response in
                 
                 if let value: AnyObject = response.result.value {
@@ -40,13 +41,14 @@ class RequestHandler {
     }
     
     func getNews(permalink: String, completion: (data: News) -> Void){
-        Alamofire.request(.GET, "http://xba.herokuapp.com/api/news/\(permalink)?key=1234567890")
+        let url = self.fixEncodingUrl("http://xba.herokuapp.com/api/news/\(permalink)?key=1234567890")
+
+        Alamofire.request(.GET, url)
             .responseJSON { response in
-                
+
                 if let value: AnyObject = response.result.value {
                     // handle the results as JSON, without a bunch of nested if loops
                     let post = JSON(value)
-                    
                     
                     let news = News()
                     news.title = post["title"].stringValue
@@ -56,21 +58,11 @@ class RequestHandler {
                     news.lastName = post["authorLastName"].stringValue
                     news.datePublished = post["datePublished"].stringValue
                     news.images.append(post["images"][0].stringValue)
+                    news.nID = post["nID"].stringValue
                     news.content = ""
                     
                     for item in post["content"] {
                         news.content = news.content + "\n\n" + item.1.stringValue
-                    }
-                    
-                    var i = 1
-                    for item in post["comments"] {
-                        let comment = Comment()
-                        comment.author = "Comment #\(i) by \(item.1["author"].stringValue)"
-                        comment.createdDate = item.1["createdDate"].stringValue
-                        comment.content = item.1["content"].stringValue
-                        
-                        news.comments.append(comment)
-                        i++;
                     }
                     
                     completion(data: news)
@@ -79,10 +71,10 @@ class RequestHandler {
     }
     
     func getLatestAchievements(pageNumber: Int, completion: (data: [LatestAchievements]) -> Void){
-        
+        let url = self.fixEncodingUrl("http://xba.herokuapp.com/api/latest/achievements?page=\(pageNumber)&key=1234567890")
         var latestAchievements = [LatestAchievements]()
         
-        Alamofire.request(.GET, "http://xba.herokuapp.com/api/latest/achievements?page=\(pageNumber)&key=1234567890")
+        Alamofire.request(.GET, url)
             .responseJSON { response in
                 
                 if let value: AnyObject = response.result.value {
@@ -97,6 +89,7 @@ class RequestHandler {
                         achievement.achievementsAdded = item.1["achievementsAdded"].stringValue
                         achievement.gamePermalink = item.1["gamePermalink"].stringValue
                         achievement.gamerScoreAdded = item.1["gamerScoreAdded"].stringValue
+                        achievement.commentsPermalink = item.1["commentsPermalink"].stringValue
                         
                         latestAchievements.append(achievement)
                     }
@@ -106,9 +99,52 @@ class RequestHandler {
         }
     }
     
-    func getImageFromUrl(url: String, completion: (image: UIImage) -> Void){
+    func getImageFromUrl(var url: String, completion: (image: UIImage) -> Void){
+        url = self.fixEncodingUrl(url)
+        
         Alamofire.request(.GET, url).response { (request, response, data, error) in
             completion(image: UIImage(data: data!)!)
         }
+    }
+    
+    func getComments(permalink: String!, nID: String!, completion: (comments: [Comment]) -> Void){
+        var url: String
+        
+        if (nID == nil) {
+            url = self.fixEncodingUrl("http://xba.herokuapp.com/api/comments?permalink=\(permalink)&key=1234567890")
+        } else {
+            url = self.fixEncodingUrl("http://xba.herokuapp.com/api/comments?nID=\(nID)&key=1234567890")
+        }
+        
+        Alamofire.request(.GET, url).responseJSON { response in
+            if let value: AnyObject = response.result.value {
+                let json = JSON(value)
+                
+                let data = self.parseCommentsJSON(json)
+                
+                completion(comments: data)
+            }
+        }
+    }
+    
+    private func fixEncodingUrl(url: String) -> String {
+        return url.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+    }
+    
+    private func parseCommentsJSON(json: JSON) -> [Comment] {
+        var data = [Comment]()
+        
+        var i = 1
+        for item in json {
+            let comment = Comment()
+            comment.author = "Comment #\(i) by \(item.1["author"].stringValue)"
+            comment.content = item.1["content"].stringValue
+            comment.createdDate = item.1["createdDate"].stringValue
+            
+            data.append(comment)
+            i++
+        }
+        
+        return data
     }
 }

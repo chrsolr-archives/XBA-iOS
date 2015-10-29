@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewsCommentsTableViewCell: UITableViewCell {
+class CommentsTVCCell: UITableViewCell {
 
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var createdDateLabel: UILabel!

@@ -1,26 +1,27 @@
 //
-//  LatestAchievementsTableViewController.swift
+//  LatestNewsViewController.swift
 //  XBA-iOS
 //
-//  Created by Christian Soler on 10/26/15.
+//  Created by Christian Soler on 10/24/15.
 //  Copyright © 2015 iamrelos. All rights reserved.
 //
 
 import UIKit
+import Alamofire
 
-class LatestAchievementsTableViewController: UITableViewController {
-    
+class LatestNewsTVC: UITableViewController {
+
     @IBOutlet var tableview: UITableView!
     
     var requestHandler = RequestHandler()
-    var latestAchievements = [LatestAchievements]()
+    var latestNews: [LatestNews] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.getLatestAchievements(1)
+        self.getLatestNews(1)
         
-        self.tableview.estimatedRowHeight = 184.0
+        self.tableview.estimatedRowHeight = 240.0
         self.tableview.rowHeight = UITableViewAutomaticDimension
         
         self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
@@ -29,6 +30,10 @@ class LatestAchievementsTableViewController: UITableViewController {
         self.tableview.backgroundColor = UIColor.whiteColor()
     }
 
+    override func viewDidAppear(animated: Bool) {
+        tableview.reloadData()
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -38,11 +43,11 @@ class LatestAchievementsTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return self.latestAchievements.count
+        return self.latestNews.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("LatestAchievementsCellIdentifier", forIndexPath: indexPath) as! LatestAchievementsViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("LatestNewsCellIdentifier", forIndexPath: indexPath) as! LatestNewsTVCCell
 
         // Remove seperator inset
         if cell.respondsToSelector("setSeparatorInset:") {
@@ -59,23 +64,38 @@ class LatestAchievementsTableViewController: UITableViewController {
             cell.layoutMargins = UIEdgeInsetsZero
         }
         
-        let achievement = latestAchievements[indexPath.row]
+        let news = latestNews[indexPath.row]
         
-        cell.configureCellWith(achievement)
+        cell.configureCellWith(news)
 
         return cell
     }
     
-    func getLatestAchievements(pageNumber: Int){
-        requestHandler.getLatestAchievements(1, completion: {(result) -> Void in
-            self.latestAchievements = result
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let identifier = segue.identifier {
+            switch identifier {
+                case "NewsDetailsIdentifier":
+                    let newsVC = segue.destinationViewController as? NewsVC
+                
+                    if let index = self.tableview.indexPathForCell(sender as! UITableViewCell) {
+                        newsVC!.newsPermalink = latestNews[index.row].permalink
+                    }
+                default: break
+            }
+        }
+    }
+    
+    
+    func getLatestNews(pageNumber: Int){
+        requestHandler.getLatestNews(pageNumber, completion: {(result) -> Void in
+            self.latestNews = [LatestNews]()
+            self.latestNews = result;
             self.tableview.reloadData()
             self.refreshControl?.endRefreshing()
         })
     }
-
+    
     func refresh(sender: AnyObject){
-        self.latestAchievements = [LatestAchievements]()
-        self.getLatestAchievements(1)
+        self.getLatestNews(1)
     }
 }
