@@ -13,7 +13,6 @@ class LatestNewsTVC: UITableViewController {
 
     @IBOutlet var tableview: UITableView!
     
-    var requestHandler = RequestHandler()
     var latestNews: [LatestNews] = []
     
     override func viewDidLoad() {
@@ -87,7 +86,7 @@ class LatestNewsTVC: UITableViewController {
     
     
     func getLatestNews(pageNumber: Int){
-        requestHandler.getLatestNews(pageNumber, completion: {(result) -> Void in
+        RequestHandler.getLatestNews(pageNumber, completion: {(result) -> Void in
             self.latestNews = [LatestNews]()
             self.latestNews = result;
             self.tableview.reloadData()

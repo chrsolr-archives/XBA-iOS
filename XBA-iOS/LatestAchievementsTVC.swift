@@ -12,7 +12,6 @@ class LatestAchievementsTVC: UITableViewController {
     
     @IBOutlet var tableview: UITableView!
     
-    var requestHandler = RequestHandler()
     var latestAchievements = [LatestAchievements]()
     var comments: [Comment]!
     
@@ -81,7 +80,7 @@ class LatestAchievementsTVC: UITableViewController {
     }
     
     func getLatestAchievements(pageNumber: Int){
-        requestHandler.getLatestAchievements(1, completion: {(result) -> Void in
+        RequestHandler.getLatestAchievements(1, completion: {(result) -> Void in
             self.latestAchievements = [LatestAchievements]()
             self.latestAchievements = result
             self.tableview.reloadData()

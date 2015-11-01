@@ -17,7 +17,6 @@ class NewsVC: UIViewController {
     @IBOutlet weak var authorFirstNameLabel: UILabel!
     @IBOutlet weak var authorLastNameLabel: UILabel!
     
-    var requestHandler = RequestHandler()
     var newsPermalink: String!
     var news: News!
     
@@ -30,7 +29,7 @@ class NewsVC: UIViewController {
         self.avatarImageView.layer.cornerRadius = avatarImageView.frame.height/2
         self.avatarImageView.clipsToBounds = true
         
-        requestHandler.getNews(newsPermalink, completion: { (result) -> Void in
+        RequestHandler.getNews(newsPermalink, completion: { (result) -> Void in
             self.news = result
             self.renderDisplay()
         })
@@ -43,7 +42,7 @@ class NewsVC: UIViewController {
         self.publishedLabel.text = self.news.datePublished
         self.contentLabel.text = self.news.content
 
-        self.requestHandler.getImageFromUrl(self.news.avatar, completion: { (result) -> Void in
+        RequestHandler.getImageFromUrl(self.news.avatar, completion: { (result) -> Void in
             self.avatarImageView.image = result
         })
     }

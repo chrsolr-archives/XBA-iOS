@@ -12,7 +12,7 @@ import Alamofire
 
 class RequestHandler {
     
-    func getLatestNews(pageNumber: Int, completion: (data: [LatestNews]) -> Void){
+    static func getLatestNews(pageNumber: Int, completion: (data: [LatestNews]) -> Void){
         
         var latestNews = [LatestNews]()
         let url = self.fixEncodingUrl("http://xba.herokuapp.com/api/latest/news?page=\(pageNumber)&key=1234567890")
@@ -30,7 +30,7 @@ class RequestHandler {
                         news.subtitle = item.1["subtitle"].stringValue
                         news.imageUrl = item.1["imageUrl"].stringValue
                         news.author = item.1["author"].stringValue
-                        news.permalink = item.1["permalink"].stringValue
+                        news.permalink = item.1["newsPermalink"].stringValue
                         
                         latestNews.append(news)
                     }
@@ -40,8 +40,8 @@ class RequestHandler {
         }
     }
     
-    func getNews(permalink: String, completion: (data: News) -> Void){
-        let url = self.fixEncodingUrl("http://xba.herokuapp.com/api/news/\(permalink)?key=1234567890")
+    static func getNews(permalink: String, completion: (data: News) -> Void){
+        let url = self.fixEncodingUrl("http://xba.herokuapp.com/api/news?permalink=\(permalink)&key=1234567890")
 
         Alamofire.request(.GET, url)
             .responseJSON { response in
@@ -70,7 +70,7 @@ class RequestHandler {
         }
     }
     
-    func getLatestAchievements(pageNumber: Int, completion: (data: [LatestAchievements]) -> Void){
+    static func getLatestAchievements(pageNumber: Int, completion: (data: [LatestAchievements]) -> Void){
         let url = self.fixEncodingUrl("http://xba.herokuapp.com/api/latest/achievements?page=\(pageNumber)&key=1234567890")
         var latestAchievements = [LatestAchievements]()
         
@@ -99,7 +99,7 @@ class RequestHandler {
         }
     }
     
-    func getImageFromUrl(var url: String, completion: (image: UIImage) -> Void){
+    static func getImageFromUrl(var url: String, completion: (image: UIImage) -> Void){
         url = self.fixEncodingUrl(url)
         
         Alamofire.request(.GET, url).response { (request, response, data, error) in
@@ -107,7 +107,7 @@ class RequestHandler {
         }
     }
     
-    func getComments(permalink: String!, nID: String!, completion: (comments: [Comment]) -> Void){
+    static func getComments(permalink: String!, nID: String!, completion: (comments: [Comment]) -> Void){
         var url: String
         
         if (nID == nil) {
@@ -127,11 +127,34 @@ class RequestHandler {
         }
     }
     
-    private func fixEncodingUrl(url: String) -> String {
+    static func getUpcomingGames(category: String, completion: (games: [UpcomingGame]) -> Void){
+        let url = self.fixEncodingUrl("http://xba.herokuapp.com/api/upcoming/games?category=\(category)&key=1234567890")
+        
+        Alamofire.request(.GET, url).responseJSON { response in
+            if let value: AnyObject = response.result.value {
+                let json = JSON(value)
+                
+                var data = [UpcomingGame]()
+                
+                for item in json {
+                    let game = UpcomingGame()
+                    game.date = item.1["date"].stringValue
+                    game.gameTitle = item.1["game"].stringValue
+                    game.gamePermalink = item.1["gamePermalink"].stringValue
+                    
+                    data.append(game)
+                }
+                
+                completion(games: data)
+            }
+        }
+    }
+    
+    static private func fixEncodingUrl(url: String) -> String {
         return url.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
     }
     
-    private func parseCommentsJSON(json: JSON) -> [Comment] {
+    static private func parseCommentsJSON(json: JSON) -> [Comment] {
         var data = [Comment]()
         
         var i = 1

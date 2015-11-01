@@ -23,7 +23,7 @@ class LatestAchievementsTVCCell: UITableViewCell {
         self.submittedByLabel.text = achievement.submittedBy
         self.gamerScoreAdded.text = achievement.gamerScoreAdded
         
-        RequestHandler().getImageFromUrl(achievement.imageUrl, completion: {(response) -> Void in
+        RequestHandler.getImageFromUrl(achievement.imageUrl, completion: {(response) -> Void in
             self.coverImageView!.image = response
         })
     }
