@@ -59,6 +59,7 @@ class RequestHandler {
                     news.datePublished = post["datePublished"].stringValue
                     news.images.append(post["images"][0].stringValue)
                     news.nID = post["nID"].stringValue
+                    news.link = post["link"].stringValue
                     news.content = ""
                     
                     for item in post["content"] {

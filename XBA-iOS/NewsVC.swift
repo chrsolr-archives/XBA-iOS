@@ -35,6 +35,10 @@ class NewsVC: UIViewController {
         })
     }
     
+    @IBAction func openUrl(sender: AnyObject) {
+        UIApplication.sharedApplication().openURL(NSURL(string: self.news.link!)!)
+    }
+    
     func renderDisplay(){
         self.authorFirstNameLabel.text = self.news.firstName
         self.authorLastNameLabel.text = self.news.lastName
