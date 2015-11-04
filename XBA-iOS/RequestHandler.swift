@@ -12,10 +12,12 @@ import Alamofire
 
 class RequestHandler {
     
+    private static let baseUrl = "http://xba-apis.azurewebsites.net/api"
+    
     static func getLatestNews(pageNumber: Int, completion: (data: [LatestNews]) -> Void){
         
         var latestNews = [LatestNews]()
-        let url = self.fixEncodingUrl("http://xba.herokuapp.com/api/latest/news?page=\(pageNumber)&key=1234567890")
+        let url = self.fixEncodingUrl("\(self.baseUrl)/latest/news?page=\(pageNumber)&key=1234567890")
         
         Alamofire.request(.GET, url)
             .responseJSON { response in
@@ -41,7 +43,7 @@ class RequestHandler {
     }
     
     static func getNews(permalink: String, completion: (data: News) -> Void){
-        let url = self.fixEncodingUrl("http://xba.herokuapp.com/api/news?permalink=\(permalink)&key=1234567890")
+        let url = self.fixEncodingUrl("\(self.baseUrl)/news?permalink=\(permalink)&key=1234567890")
 
         Alamofire.request(.GET, url)
             .responseJSON { response in
@@ -72,7 +74,7 @@ class RequestHandler {
     }
     
     static func getLatestAchievements(pageNumber: Int, completion: (data: [LatestAchievements]) -> Void){
-        let url = self.fixEncodingUrl("http://xba.herokuapp.com/api/latest/achievements?page=\(pageNumber)&key=1234567890")
+        let url = self.fixEncodingUrl("\(self.baseUrl)/latest/achievements?page=\(pageNumber)&key=1234567890")
         var latestAchievements = [LatestAchievements]()
         
         Alamofire.request(.GET, url)
@@ -112,9 +114,9 @@ class RequestHandler {
         var url: String
         
         if (nID == nil) {
-            url = self.fixEncodingUrl("http://xba.herokuapp.com/api/comments?permalink=\(permalink)&key=1234567890")
+            url = self.fixEncodingUrl("\(self.baseUrl)/comments?permalink=\(permalink)&key=1234567890")
         } else {
-            url = self.fixEncodingUrl("http://xba.herokuapp.com/api/comments?nID=\(nID)&key=1234567890")
+            url = self.fixEncodingUrl("\(self.baseUrl)/comments?nID=\(nID)&key=1234567890")
         }
         
         Alamofire.request(.GET, url).responseJSON { response in
@@ -129,7 +131,7 @@ class RequestHandler {
     }
     
     static func getUpcomingGames(category: String, completion: (games: [UpcomingGame]) -> Void){
-        let url = self.fixEncodingUrl("http://xba.herokuapp.com/api/upcoming/games?category=\(category)&key=1234567890")
+        let url = self.fixEncodingUrl("\(self.baseUrl)/upcoming/games?category=\(category)&key=1234567890")
         
         Alamofire.request(.GET, url).responseJSON { response in
             if let value: AnyObject = response.result.value {
