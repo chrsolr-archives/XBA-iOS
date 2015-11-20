@@ -18,6 +18,9 @@
 		215654551BDC6F2E0049A393 /* LatestNewsTVCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215654541BDC6F2E0049A393 /* LatestNewsTVCCell.swift */; };
 		215654571BDC85E30049A393 /* NewsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215654561BDC85E30049A393 /* NewsVC.swift */; };
 		215654591BDC891F0049A393 /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215654581BDC891F0049A393 /* RequestHandler.swift */; };
+		2156B0621BEDB04E007B0EFC /* News.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2156B0611BEDB04E007B0EFC /* News.storyboard */; };
+		2156B06B1BEDB07E007B0EFC /* LatestAchievements.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2156B0691BEDB07E007B0EFC /* LatestAchievements.storyboard */; };
+		2156B06D1BEDB09F007B0EFC /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2156B06C1BEDB09F007B0EFC /* More.storyboard */; };
 		2172CB8B1BDC47BB00AC1444 /* Alamofire.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 2172CB5A1BDC47BB00AC1444 /* Alamofire.podspec */; };
 		2172CB8C1BDC47BB00AC1444 /* Alamofire.xcworkspace in Resources */ = {isa = PBXBuildFile; fileRef = 2172CB5E1BDC47BB00AC1444 /* Alamofire.xcworkspace */; };
 		2172CB991BDC47BB00AC1444 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2172CB741BDC47BB00AC1444 /* Alamofire.swift */; };
@@ -40,6 +43,7 @@
 		217A18E91BDFF00500620BC9 /* CommentsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217A18E81BDFF00500620BC9 /* CommentsTVC.swift */; };
 		217A18EB1BDFF23300620BC9 /* CommentsTVCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217A18EA1BDFF23300620BC9 /* CommentsTVCCell.swift */; };
 		217A18ED1BE0562100620BC9 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217A18EC1BE0562100620BC9 /* Comment.swift */; };
+		21981D221BEE781200E85107 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21981D211BEE781200E85107 /* Common.swift */; };
 		21A02BE81BDC24A50044ABD4 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A02BE71BDC24A50044ABD4 /* SwiftyJSON.swift */; };
 		21B1243F1BDBECAD005BCD0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B1243E1BDBECAD005BCD0B /* AppDelegate.swift */; };
 		21B124441BDBECAD005BCD0B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21B124421BDBECAD005BCD0B /* Main.storyboard */; };
@@ -134,6 +138,9 @@
 		215654541BDC6F2E0049A393 /* LatestNewsTVCCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatestNewsTVCCell.swift; sourceTree = "<group>"; };
 		215654561BDC85E30049A393 /* NewsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsVC.swift; sourceTree = "<group>"; };
 		215654581BDC891F0049A393 /* RequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
+		2156B0611BEDB04E007B0EFC /* News.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = News.storyboard; sourceTree = "<group>"; };
+		2156B06A1BEDB07E007B0EFC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LatestAchievements.storyboard; sourceTree = "<group>"; };
+		2156B06C1BEDB09F007B0EFC /* More.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
 		2172CB591BDC47BB00AC1444 /* Alamofire.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Alamofire.playground; sourceTree = "<group>"; };
 		2172CB5A1BDC47BB00AC1444 /* Alamofire.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Alamofire.podspec; sourceTree = "<group>"; };
 		2172CB5B1BDC47BB00AC1444 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Alamofire.xcodeproj; sourceTree = "<group>"; };
@@ -157,6 +164,7 @@
 		217A18E81BDFF00500620BC9 /* CommentsTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsTVC.swift; sourceTree = "<group>"; };
 		217A18EA1BDFF23300620BC9 /* CommentsTVCCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsTVCCell.swift; sourceTree = "<group>"; };
 		217A18EC1BE0562100620BC9 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		21981D211BEE781200E85107 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		21A02BE71BDC24A50044ABD4 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		21B1243B1BDBECAD005BCD0B /* XBA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XBA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21B1243E1BDBECAD005BCD0B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -213,8 +221,20 @@
 			isa = PBXGroup;
 			children = (
 				215654581BDC891F0049A393 /* RequestHandler.swift */,
+				21981D211BEE781200E85107 /* Common.swift */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		2156B06E1BEDB0A6007B0EFC /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				21B124421BDBECAD005BCD0B /* Main.storyboard */,
+				2156B06C1BEDB09F007B0EFC /* More.storyboard */,
+				2156B0691BEDB07E007B0EFC /* LatestAchievements.storyboard */,
+				2156B0611BEDB04E007B0EFC /* News.storyboard */,
+			);
+			name = Storyboards;
 			sourceTree = "<group>";
 		};
 		2172CB3B1BDC419000AC1444 /* Frameworks */ = {
@@ -308,7 +328,7 @@
 				2105E0091BDF38040000F451 /* Controllers */,
 				2172CB3B1BDC419000AC1444 /* Frameworks */,
 				21A02BE61BDC245D0044ABD4 /* Libs */,
-				21B124421BDBECAD005BCD0B /* Main.storyboard */,
+				2156B06E1BEDB0A6007B0EFC /* Storyboards */,
 			);
 			path = "XBA-iOS";
 			sourceTree = "<group>";
@@ -444,9 +464,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				21B124491BDBECAD005BCD0B /* LaunchScreen.storyboard in Resources */,
+				2156B06D1BEDB09F007B0EFC /* More.storyboard in Resources */,
 				2172CB8B1BDC47BB00AC1444 /* Alamofire.podspec in Resources */,
 				2172CB8C1BDC47BB00AC1444 /* Alamofire.xcworkspace in Resources */,
 				2172CB9C1BDC47BB00AC1444 /* Info.plist in Resources */,
+				2156B0621BEDB04E007B0EFC /* News.storyboard in Resources */,
+				2156B06B1BEDB07E007B0EFC /* LatestAchievements.storyboard in Resources */,
 				213803001BE08524007F5933 /* Assets.xcassets in Resources */,
 				21B124441BDBECAD005BCD0B /* Main.storyboard in Resources */,
 			);
@@ -463,6 +486,7 @@
 				21A02BE81BDC24A50044ABD4 /* SwiftyJSON.swift in Sources */,
 				215654551BDC6F2E0049A393 /* LatestNewsTVCCell.swift in Sources */,
 				217A18ED1BE0562100620BC9 /* Comment.swift in Sources */,
+				21981D221BEE781200E85107 /* Common.swift in Sources */,
 				2172CBA61BDC47BB00AC1444 /* Upload.swift in Sources */,
 				2156544D1BDC53700049A393 /* LatestNews.swift in Sources */,
 				2105E0131BDF38CF0000F451 /* LatestAchievements.swift in Sources */,
@@ -505,6 +529,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		2156B0691BEDB07E007B0EFC /* LatestAchievements.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2156B06A1BEDB07E007B0EFC /* Base */,
+			);
+			name = LatestAchievements.storyboard;
+			sourceTree = "<group>";
+		};
 		21B124421BDBECAD005BCD0B /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

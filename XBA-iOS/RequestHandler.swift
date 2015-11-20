@@ -12,13 +12,10 @@ import Alamofire
 
 class RequestHandler {
     
-    private static let baseUrl = "http://xba-apis.azurewebsites.net/api"
-    private static let apiKey = "1234567890"
-    
     static func getLatestNews(pageNumber: Int, completion: (data: [LatestNews]) -> Void){
         
         var latestNews = [LatestNews]()
-        let url = self.fixEncodingUrl("\(self.baseUrl)/latest/news?page=\(pageNumber)&key=\(apiKey)")
+        let url = self.fixEncodingUrl("\(Common.baseUrl)/latest/news?page=\(pageNumber)&key=\(Common.apiKey)")
         
         Alamofire.request(.GET, url)
             .responseJSON { response in
@@ -44,7 +41,7 @@ class RequestHandler {
     }
     
     static func getNews(permalink: String, completion: (data: News) -> Void){
-        let url = self.fixEncodingUrl("\(self.baseUrl)/news?permalink=\(permalink)&key=\(apiKey)")
+        let url = self.fixEncodingUrl("\(Common.baseUrl)/news?permalink=\(permalink)&key=\(Common.apiKey)")
 
         Alamofire.request(.GET, url)
             .responseJSON { response in
@@ -75,7 +72,7 @@ class RequestHandler {
     }
     
     static func getLatestAchievements(pageNumber: Int, completion: (data: [LatestAchievements]) -> Void){
-        let url = self.fixEncodingUrl("\(self.baseUrl)/latest/achievements?page=\(pageNumber)&key=\(apiKey)")
+        let url = self.fixEncodingUrl("\(Common.baseUrl)/latest/achievements?page=\(pageNumber)&key=\(Common.apiKey)")
         var latestAchievements = [LatestAchievements]()
         
         Alamofire.request(.GET, url)
@@ -115,9 +112,9 @@ class RequestHandler {
         var url: String
         
         if (nID == nil) {
-            url = self.fixEncodingUrl("\(self.baseUrl)/comments?permalink=\(permalink)&key=\(apiKey)")
+            url = self.fixEncodingUrl("\(Common.baseUrl)/comments?permalink=\(permalink)&key=\(Common.apiKey)")
         } else {
-            url = self.fixEncodingUrl("\(self.baseUrl)/comments?nID=\(nID)&key=\(apiKey)")
+            url = self.fixEncodingUrl("\(Common.baseUrl)/comments?nID=\(nID)&key=\(Common.apiKey)")
         }
         
         Alamofire.request(.GET, url).responseJSON { response in
@@ -132,7 +129,7 @@ class RequestHandler {
     }
     
     static func getUpcomingGames(category: String, completion: (games: [UpcomingGame]) -> Void){
-        let url = self.fixEncodingUrl("\(self.baseUrl)/upcoming/games?category=\(category)&key=\(apiKey)")
+        let url = self.fixEncodingUrl("\(Common.baseUrl)/upcoming/games?category=\(category)&key=\(Common.apiKey)")
         
         Alamofire.request(.GET, url).responseJSON { response in
             if let value: AnyObject = response.result.value {
